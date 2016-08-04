@@ -1,0 +1,25 @@
+<% action_url = album.persisted? ? album_url(album) : albums_url %>
+<% http_method = album.persisted? ? "PATCH" : "POST" %>
+<form action="<%= action_url%> " method="POST">
+  <input type="hidden" name="_method" value="<%=http_method%>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+  <p>
+    <label for="album_name">albums name
+      <input type="text" name="album[name]"id = "album_name" value="<%=album.name%>">
+    </label>
+    <input
+      type="radio"
+      name="band[live]"
+      id ="a_live_album"
+      value="true"
+      <%="checked" if album.live%>>
+    <label for="album_live_true">live</label>
+    <input
+      type="radio"
+      name="band[live]"
+      id ="a_live_album"
+      value="false"
+      <%="checked" if !album.live%>>
+    <label for="album_live_false">not_live</label>
+
+</form>

@@ -1,0 +1,24 @@
+<!-- Each of your Band/Album/Track show pages should have links for:
+
+Editing
+Destroying
+Up one level (Track to Album, Album to Band, Band to bands index).
+Down one level (Band to each Album, Album to each Track).
+Also a link to build one more of each. -->
+<h1><%=@band.name%></h1>
+
+<h2>albums</h2>
+
+<ul>
+<%@band.albums.each do |album| %>
+  <li><%link_to album.name, album_url(album)%></li>
+<%end%>
+</ul>
+
+<h3>links!</h3>
+<ul>
+  <li><%=link_to "add a Album",new_album_url(@band) %></li>
+  <li><%=link_to "Edit band", edit_band_url(@band) %></li>
+  <li><%=link_to "delete band", band_url(@band), method: :delete %></li>
+  <li><%=link_to "all bands", bands_url %></li>
+</ul>

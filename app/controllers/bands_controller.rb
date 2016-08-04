@@ -1,6 +1,7 @@
-class BandController < ApplicationController
+class BandsController < ApplicationController
+  before_action :require_current_user!
   def index
-    bands = Band.all
+    @bands = Band.all
     render :index
   end
 
@@ -20,7 +21,7 @@ class BandController < ApplicationController
       redirect_to band_url(@band)
     else
       flash.now[:errors] = @band.errors.full_messages
-      rander :new
+      render :new
     end
   end
 
@@ -43,6 +44,7 @@ class BandController < ApplicationController
     flash.now[:errors] = @band.errors.full_messages
     render :edit
   end
+end
 
   private
   def band_params
